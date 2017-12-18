@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuexin.xcloud.dictionary.service.mapper.dicAbility.DicAbilityMapper">
+    <!--<sql id="dic_ability_field_list_alias">-->
+    <!--abi.abilityID,-->
+    <!--abi.abilityName,-->
+    <!--abi.creator,-->
+    <!--abi.createDate,-->
+    <!--abi.modifier,-->
+    <!--abi.modifyDate,-->
+    <!--abi.isEffective-->
+    <!--</sql>-->
+    <sql id="dic_ability_field_list_alias">
+        abi.abilityID,
+        abi.abilityName
+    </sql>
+    <insert id="insertAbility">
+        INSERT INTO dic_ability
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dicAbility.abilityID != null">abilityID,</if>
+            <if test="dicAbility.abilityName != null">abilityName,</if>
+            <if test="dicAbility.creator != null">creator,</if>
+            <if test="dicAbility.createDate != null">createDate,</if>
+            <if test="dicAbility.modifier != null">modifier,</if>
+            <if test="dicAbility.modifyDate != null">modifyDate,</if>
+            <if test="dicAbility.isEffective != null">isEffective</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dicAbility.abilityID != null">#{dicAbility.abilityID},</if>
+            <if test="dicAbility.abilityName != null">#{dicAbility.abilityName},</if>
+            <if test="dicAbility.creator != null">#{dicAbility.creator},</if>
+            <if test="dicAbility.createDate != null">#{dicAbility.createDate},</if>
+            <if test="dicAbility.modifyDate != null">#{dicAbility.modifyDate},</if>
+            <if test="dicAbility.modifier != null">#{dicAbility.modifier},</if>
+            <if test="dicAbility.isEffective != null">#{dicAbility.isEffective}</if>
+        </trim>
+    </insert>
+    <update id="updateAbility">
+        UPDATE dic_ability
+        <set>
+            <if test="dicAbility.abilityID != null">abilityID=#{dicAbility.abilityID},</if>
+            <if test="dicAbility.abilityName != null">abilityName=#{dicAbility.abilityName},</if>
+            <if test="dicAbility.creator != null">creator=#{dicAbility.creator},</if>
+            <if test="dicAbility.createDate != null">createDate=#{dicAbility.createDate},</if>
+            <if test="dicAbility.modifier != null">modifier=#{dicAbility.modifier},</if>
+            <if test="dicAbility.modifyDate != null">modifyDate=#{dicAbility.modifyDate},</if>
+            <if test="dicAbility.isEffective != null">isEffective=#{dicAbility.isEffective}</if>
+        </set>
+        WHERE abilityID = #{dicAbility.abilityID};
+    </update>
+    <select id="selectAbilityInfo" resultType="com.xuexin.xcloud.dictionary.entity.DicAbilityResult">
+        SELECT
+        <include refid="dic_ability_field_list_alias"/>
+        FROM
+        dic_ability abi
+        <where>
+            <if test="abilityID != null and abilityID != ''">
+                abi.abilityID = #{abilityID}
+            </if>
+            <if test="abilityName != null and abilityName != ''">
+                AND abi.abilityName = #{abilityName}
+            </if>
+            <if test="isEffective != null">
+                AND abi.isEffective = #{isEffective}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+    <select id="selectAbilitySearch" resultType="com.xuexin.xcloud.dictionary.entity.DicAbilityResult">
+        SELECT
+        <include refid="dic_ability_field_list_alias"/>
+        FROM
+        dic_ability abi
+        WHERE abi.isEffective = 1
+        <if test="searchKey != null and searchKey != '' ">
+            AND abi.abilityName LIKE CONCAT('%',#{searchKey},'%')
+        </if>
+        ORDER BY abi.createDate DESC
+    </select>
+</mapper>

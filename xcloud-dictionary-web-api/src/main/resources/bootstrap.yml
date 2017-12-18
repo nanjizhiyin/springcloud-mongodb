@@ -1,0 +1,130 @@
+# HTTP Server
+server:
+  port: 10505   # HTTP (Tomcat) port
+
+
+#单点登录配置项
+sso:
+  cookie:
+    domain: xuexindev.com #项目根域名
+  login:
+    url: http://login.local.xuexindev.com:40000/login2 #登录页面的地址
+  auth:
+    url: http://121.40.180.70:38883/authorization #权限平台的访问地址
+    platform: ib #本系统在权限平台中的简称
+
+
+# 默认的profile为local，其他环境通过指定启动参数使用不同的profile，比如：  
+#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test  
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod    
+# Spring properties
+spring:
+  application:
+    name: DICTIONARY-API  # Servce registers under this name
+  profiles:  
+    active: local
+  cloud: 
+    config:
+      uri: http://120.26.231.118:11110
+      name: dictionary
+      label: master
+      profile: ${spring.profiles.active}
+      discovery:
+        enabled: true
+        serviceId: CONFIG-SRV
+
+
+---
+#本地开发环境    
+spring:
+  profiles: local
+  redis:
+    host: 120.26.231.118
+    port: 6379
+    password: Xqweedccxzaxue$Xin+2@!3N#^lkjgfwsdcoiuy
+
+#spring cloud 服务发现地址    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://120.26.231.118:11120/eureka/ # 可配置多个地址
+      #defaultZone: http://192.168.2.109:11120/eureka/ # 可配置多个地址
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  healthcheck:
+    enabled: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+
+      
+
+  
+---
+# 集成开发环境配置  
+spring:   
+  profiles: dev
+  redis:
+  #    host: 121.40.180.70
+    host: 10.168.76.24
+    port: 6379
+    password: xue$Xin+2@!3
+  
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://121.40.180.70:11120/eureka/ # 可配置多个地址
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  
+  
+---
+# 测试环境配置  
+spring:  
+  profiles: test
+  redis:
+    host: 10.117.106.104
+    port: 6379
+    password: Ndkk234*%@j232
+        
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.117.106.104:11120/eureka/ # 可配置多个地址
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
+      
+---
+# 预上线环境配置  
+spring:  
+  profiles: pre  
+        
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/ # 可配置多个地址
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+      
+      
+---
+# 生产环境配置  
+spring:  
+  profiles: product  
+        
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/ # 可配置多个地址
+  instance:
+    prefer-ip-address: true   #服务之间调用时，指定IP调用
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
