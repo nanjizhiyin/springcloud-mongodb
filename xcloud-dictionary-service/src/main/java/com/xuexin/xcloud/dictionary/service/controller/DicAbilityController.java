@@ -3,7 +3,6 @@ package com.xuexin.xcloud.dictionary.service.controller;
 import com.alibaba.fastjson.JSON;
 import com.xuexin.xcloud.dictionary.entity.DicAbility;
 import com.xuexin.xcloud.dictionary.entity.DicAbilityResult;
-import com.xuexin.xcloud.dictionary.entity.DicCauseResult;
 import com.xuexin.xcloud.dictionary.entity.common.ResultBean;
 import com.xuexin.xcloud.dictionary.entity.common.ResultError;
 import com.xuexin.xcloud.dictionary.entity.common.ResultSuccess;

@@ -28,7 +28,7 @@ spring:
         serviceId: CONFIG-SRV
 
 
----    
+---
 #本地开发环境
 
 spring:     
@@ -44,6 +44,10 @@ spring:
       max-active: 10  
       max-wait: -1
     #password: xue$Xin+2@!3
+  data:
+    mongodb:
+      uri: mongodb://gaojindan:gaojindan001@121.40.180.70:27017/gaojindandb
+
 
 
 #spring cloud 服务发现地址
@@ -87,8 +91,8 @@ eureka:
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
-      
-      
+
+
 ---
 # 测试环境配置  
 spring:  
@@ -109,7 +113,7 @@ eureka:
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 5
       
-      
+
 ---
 # 预上线环境配置  
 spring:  
@@ -124,7 +128,7 @@ eureka:
     prefer-ip-address: true   #服务之间调用时，指定IP调用
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
       
-      
+
 ---
 # 生产环境配置  
 spring:  

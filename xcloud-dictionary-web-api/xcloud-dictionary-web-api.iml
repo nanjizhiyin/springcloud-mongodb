@@ -121,7 +121,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-redis:1.4.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:1.8.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:1.2.1.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.13.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:4.3.7.RELEASE" level="project" />
@@ -141,6 +140,7 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.5.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:1.5.2.RELEASE" level="project" />
     <orderEntry type="module" module-name="xcloud-dictionary-entity" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.13.1.RELEASE" level="project" />
     <orderEntry type="module" module-name="xcloud-dictionary-service-api" />
     <orderEntry type="library" name="Maven: com.xuexin:xcloud-itembank-entity:0.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.xuexin:xcloud-itembank-service-api:0.0.1" level="project" />
