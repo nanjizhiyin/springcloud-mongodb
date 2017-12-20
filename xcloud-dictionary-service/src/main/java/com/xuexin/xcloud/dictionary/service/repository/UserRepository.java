@@ -17,5 +17,8 @@ public interface UserRepository extends MongoRepository<MGUser, Long> {
 
     public MGUser findByXuexinid(String xuexinid);
     public List<MGUser> findByAgeGreaterThan(int age) ;
+    public List<MGUser> findByAgeBetween(int from, int to);
+    public MGUser findByName(String name);
+    public List<MGUser> findByNameLike(String name);
 
 }
